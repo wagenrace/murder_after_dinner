@@ -44,14 +44,19 @@
 </head>
 
 <body>
-    <h1>Hello Eel</h1>
-    <div id="fullChat">
-
+    <h1>Jing Wan</h1>
+    <div class="container">
+        <div id="chat">
+            <div id="fullChat">
+            </div>
+            <input type="text" id="newMessage">
+            <button onclick="send_message()">Send</button>
+            <button onclick="eel.fill()">fill</button>
+        </div>
+        <div id="portrait">
+            <img src="/static/persons/person1.png" />
+        </div>
     </div>
-    <input type="text" id="newMessage">
-    <button onclick="send_message()">Send</button>
-    <button onclick="eel.fill()">fill</button>
-
 </body>
 
 </html>
