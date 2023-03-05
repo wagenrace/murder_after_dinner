@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue';
-import message from './components/message.vue';
+import Message from './components/message.vue';
 
 const answeredQuestions = ref([])
 const question = ref("")
