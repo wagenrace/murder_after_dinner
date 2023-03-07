@@ -22,11 +22,4 @@ def ask_question(person_id: int, question: str):
 eel.init("web")
 
 
-@eel.expose
-def fill():
-    for q in questions:
-        eel.add_question(q)
-        ask_question(0, q)
-
-
 eel.start("index.html")
