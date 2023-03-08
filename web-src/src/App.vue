@@ -2,6 +2,7 @@
 import { nextTick, onMounted, ref } from 'vue';
 import Message from './components/Message.vue';
 import Profile from './components/Profile.vue'
+import NavBar from './components/NavBar.vue';
 const input = ref(null)
 const messagesBox = ref(null)
 
@@ -34,21 +35,23 @@ fillingUp()
 </script>
 
 <template >
-  <div class=" w-full h-full flex flex-row">
-
-    <div class="w-1/2 h-full bg-gray-200 flex flex-col">
-      <div class="grow overflow-y-scroll" ref="messagesBox">
-        <Message v-for="answeredQuestion in answeredQuestions" :question="answeredQuestion.question"
-          :answer="answeredQuestion.answer" />
+  <div class="h-full w-full flex flex-col font-sans">
+    <NavBar class="h-1/15" />
+    <div class="w-full h-14/15 flex flex-row">
+      <div class="w-1/2 h-full bg-gray-200 flex flex-col">
+        <div class="grow overflow-y-scroll" ref="messagesBox">
+          <Message v-for="answeredQuestion in answeredQuestions" :question="answeredQuestion.question"
+            :answer="answeredQuestion.answer" />
+        </div>
+        <form @submit.prevent="askQuesion" class="flex-none w-full flex p-1">
+          <input class="grow" type="text" v-model="question" ref="input" />
+          <button class="flex-none p-2 bg-green-400 rounded-r-full" type="submit">Ask question</button>
+        </form>
+        <button class="bg-red-500 p-2 rounded-full w-24" @click="fillingUp">Fill</button>
       </div>
-      <form @submit.prevent="askQuesion" class="flex-none w-full flex p-1">
-        <input class="grow" type="text" v-model="question" ref="input" />
-        <button class="flex-none p-2 bg-green-400 rounded-r-full" type="submit">Ask question</button>
-      </form>
-      <button class="bg-red-500 p-2 rounded-full w-24" @click="fillingUp">Fill</button>
-    </div>
-    <div class="w-1/2 h-full bg-green-200">
-      <Profile />
+      <div class="w-1/2 h-full bg-green-200">
+        <Profile />
+      </div>
     </div>
   </div>
 </template>

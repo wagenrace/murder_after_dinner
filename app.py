@@ -1,6 +1,5 @@
 import eel
 from transformers import pipeline
-from test_text import questions
 from Charactor_knowledges import all_persons
 
 model_name = "deepset/roberta-base-squad2"
