@@ -4,6 +4,6 @@
 
 <template>
     <div class="flex w-full justify-center h-full">
-        <img src="../assets/person1_big.png" class="h-full overflow-hidden" alt="Person 1" />
+        <img src="../assets/person1_big.png" class="object-cover object-top w-full" alt="Person 1" />
     </div>
 </template>

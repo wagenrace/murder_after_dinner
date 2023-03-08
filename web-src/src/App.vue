@@ -36,16 +36,16 @@ fillingUp()
 <template >
   <div class=" w-full h-full flex flex-row">
 
-    <div class="w-1/2 h-full bg-orange-900">
-      <div class="h-5/6 overflow-y-scroll" ref="messagesBox">
+    <div class="w-1/2 h-full bg-gray-200 flex flex-col">
+      <div class="grow overflow-y-scroll" ref="messagesBox">
         <Message v-for="answeredQuestion in answeredQuestions" :question="answeredQuestion.question"
           :answer="answeredQuestion.answer" />
       </div>
-      <form @submit.prevent="askQuesion">
-        <input type="text" v-model="question" ref="input" />
-        <button type="submit">Ask question</button>
+      <form @submit.prevent="askQuesion" class="flex-none w-full flex p-1">
+        <input class="grow" type="text" v-model="question" ref="input" />
+        <button class="flex-none p-2 bg-green-400 rounded-r-full" type="submit">Ask question</button>
       </form>
-      <button @click="fillingUp">Fill</button>
+      <button class="bg-red-500 p-2 rounded-full w-24" @click="fillingUp">Fill</button>
     </div>
     <div class="w-1/2 h-full bg-green-200">
       <Profile />
