@@ -18,6 +18,7 @@ const routes = [
 
 const router = createRouter({
   history: createWebHistory("/"),
+  linkExactActiveClass: "active",
   routes,
 });
 
