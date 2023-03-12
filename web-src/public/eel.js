@@ -1,8 +1,8 @@
 let persons = [
   {
     id: 0,
-    name: "Amber",
-    imageName: "Amber.png",
+    name: "Investigator",
+    imageName: "Investigator.png",
     answeredQuestions: [
       {
         question: "Who are you?",
