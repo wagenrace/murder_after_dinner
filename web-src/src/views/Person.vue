@@ -4,54 +4,61 @@ import Message from '../components/Message.vue';
 import Profile from '../components/Profile.vue'
 import { useRoute } from 'vue-router'
 
+// Person specific variables
 const route = useRoute()
 const personId = computed(() => route.params.id)
 const personName = ref("")
 const personImageName = ref("")
-const input = ref(null)
-const messagesBox = ref(null)
 const answeredQuestions = ref([])
 const question = ref("")
+
+// Elements of the DOM
+const input = ref(null)
+const messagesBox = ref(null)
 
 onMounted(() => {
     input.value.focus()
     messagesBox.value.scrollTop = messagesBox.value.scrollHeight
 })
 
+// The Eel app holds to single truth
+// So first a call to the app is made
 const _loadPerson = (_person) => {
     personName.value = _person.name
     answeredQuestions.value = _person.answeredQuestions
     personImageName.value = _person.imageName
     nextTick(() => {
         if (messagesBox.value) messagesBox.value.scrollTop = messagesBox.value.scrollHeight
+        input.value.focus()
     })
 
 }
 const loadPerson = () => {
     eel.get_person(personId.value)(_loadPerson)
 }
+
+// This triggers when the router goes from one person to another
 watch(personId, () => {
     loadPerson()
 })
 
-
-const addMessage = (answeredQuestion) => {
-    answeredQuestions.value.push(answeredQuestion)
-    // Move to bottom of the chat when div is updated (nextTick)
-    nextTick(() => {
-        if (messagesBox.value) messagesBox.value.scrollTop = messagesBox.value.scrollHeight
-    })
-}
-const askQuesion = () => {
-    eel.ask_question(route.params.id, question.value)(addMessage)
+const askQuestion = () => {
+    eel.ask_question(personId.value, question.value)
     question.value = ""
+    loadPerson()
 }
 const fillingUp = () => {
-    eel.ask_question(route.params.id, "Who are you?")(addMessage)
-    eel.ask_question(route.params.id, "Are you in a relationship?")(addMessage)
-    eel.ask_question(route.params.id, "Who is the butler?")(addMessage)
-    eel.ask_question(route.params.id, "When did you leave the dinner?")(addMessage)
-    eel.ask_question(route.params.id, "Germany is a Western European country with a landscape of forests, rivers, mountain ranges and North Sea beaches. It has over 2 millennia of history. Berlin, its capital, is home to art and nightlife scenes, the Brandenburg Gate and many sites relating to WWII. Munich is known for its Oktoberfest and beer halls, including the 16th-century Hofbräuhaus. Frankfurt, with its skyscrapers, houses the European Central Bank.")(addMessage)
+    // quick testing
+    question.value = "Who are you?"
+    askQuestion()
+    question.value = "Are you in a relationship?"
+    askQuestion()
+    question.value = "Who is the butler?"
+    askQuestion()
+    question.value = "When did you leave the dinner?"
+    askQuestion()
+    question.value = "Germany is a Western European country with a landscape of forests, rivers, mountain ranges and North Sea beaches. It has over 2 millennia of history. Berlin, its capital, is home to art and nightlife scenes, the Brandenburg Gate and many sites relating to WWII. Munich is known for its Oktoberfest and beer halls, including the 16th-century Hofbräuhaus. Frankfurt, with its skyscrapers, houses the European Central Bank."
+    askQuestion()
 }
 
 loadPerson()
@@ -65,7 +72,7 @@ loadPerson()
                 <Message v-for="answeredQuestion in answeredQuestions" :question="answeredQuestion.question"
                     :answer="answeredQuestion.answer" />
             </div>
-            <form @submit.prevent="askQuesion" class="flex-none w-full flex p-1">
+            <form @submit.prevent="askQuestion" class="flex-none w-full flex p-1">
                 <input class="grow" type="text" v-model="question" ref="input" />
                 <button class="flex-none p-2 bg-green-400 rounded-r-full" type="submit">Ask question</button>
             </form>
