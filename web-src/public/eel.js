@@ -83,7 +83,7 @@ class Eel {
     return (func) => func(persons[person_id]);
   }
   get_all_persons() {
-    return persons;
+    return (func) => func(persons);
   }
 }
 

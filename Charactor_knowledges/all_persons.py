@@ -7,7 +7,7 @@ with open(os.path.join(__location__, "general_knowledge.txt"), "r") as f:
     general_knowledge = f.read()
 
 all_persons = [
-    Person("Amber", general_knowledge, ""),
+    Person("The investigator", general_knowledge, ""),
     Person("Saabir", general_knowledge, ""),
     Person("Jabari", general_knowledge, ""),
     Person("Jing", general_knowledge, ""),

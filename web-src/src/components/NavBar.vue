@@ -1,6 +1,12 @@
 <script setup>
+import { ref } from 'vue';
 
-const allPersons = eel.get_all_persons()
+const allPersons = ref([])
+
+const updateAllPersons = (_allPersons) => {
+    allPersons.value = _allPersons
+}
+eel.get_all_persons()(updateAllPersons)
 
 </script>
 
