@@ -23,6 +23,7 @@ class Person:
     name: str
     general_knowledge: str
     first_statement: str
+    image_name: str
     knowledge: str = ""
     answeredQuestions: List[AnsweredQuestion] = field(default_factory=lambda: [])
 
@@ -39,5 +40,5 @@ class Person:
 
     def __iter__(self):
         yield "name", self.name
-        yield "imageName", self.name + ".png"
+        yield "imageName", self.image_name
         yield "answeredQuestions", [dict(a) for a in self.answeredQuestions]

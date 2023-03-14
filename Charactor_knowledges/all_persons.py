@@ -7,10 +7,10 @@ with open(os.path.join(__location__, "general_knowledge.txt"), "r") as f:
     general_knowledge = f.read()
 
 all_persons = [
-    Person("The investigator", general_knowledge, ""),
-    Person("Saabir", general_knowledge, ""),
-    Person("Jabari", general_knowledge, ""),
-    Person("Jing", general_knowledge, ""),
-    Person("Feodora", general_knowledge, ""),
-    Person("Gael", general_knowledge, ""),
+    Person("The investigator", general_knowledge, "", image_name="Investigator.png"),
+    Person("Saabir", general_knowledge, "", image_name="Saabir.png"),
+    Person("Jabari", general_knowledge, "", image_name="Jabari.png"),
+    Person("Jing", general_knowledge, "", image_name="Jing.png"),
+    Person("Feodora", general_knowledge, "", image_name="Feodora.png"),
+    Person("Gael", general_knowledge, "", image_name="Gael.png"),
 ]
