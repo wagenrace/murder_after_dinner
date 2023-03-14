@@ -20,7 +20,6 @@ def get_all_persons():
         {"id": person_id, "name": all_persons[person_id].name}
         for person_id in range(len(all_persons))
     ]
-    print(_all_persons)
     return _all_persons
 
 
