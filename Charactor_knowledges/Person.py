@@ -28,7 +28,7 @@ class Person:
     answeredQuestions: List[AnsweredQuestion] = field(default_factory=lambda: [])
 
     def __post_init__(self):
-        self.knowledge = f"""My name is {self.name}
+        self.knowledge += f"""My name is {self.name}
             {self.general_knowledge}
             {self.first_statement}"""
 
